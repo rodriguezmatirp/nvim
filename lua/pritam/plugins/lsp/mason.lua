@@ -27,7 +27,6 @@ return {
 		mason_lspconfig.setup({
 			-- list of servers for mason to install
 			ensure_installed = {
-				"tsserver",
 				"html",
 				"cssls",
 				"tailwindcss",
@@ -36,13 +35,13 @@ return {
 				"docker_compose_language_service",
 				"jsonls",
 				"ast_grep",
-				"pylsp",
-				"pyre",
 				"terraformls",
+				"gopls",
 				"graphql",
 				"emmet_ls",
 				"prismals",
 				"pyright",
+				"yamlls",
 			},
 		})
 
@@ -55,6 +54,9 @@ return {
 				"pylint",
 				"eslint_d",
 				"debugpy",
+				"delve", -- go debugger
+				"goimports", -- go formatter
+				"golangci-lint", -- go linter
 			},
 		})
 	end,

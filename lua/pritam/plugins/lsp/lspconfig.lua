@@ -78,37 +78,40 @@ return {
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 		end
 
-		mason_lspconfig.setup_handlers({
-			-- default handler for installed servers
-			function(server_name)
-				lspconfig[server_name].setup({
-					capabilities = capabilities,
-				})
-			end,
-			["graphql"] = function()
-				-- configure graphql language server
-				lspconfig["graphql"].setup({
-					capabilities = capabilities,
-					filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
-				})
-			end,
-			["lua_ls"] = function()
-				-- configure lua server (with special settings)
-				lspconfig["lua_ls"].setup({
-					capabilities = capabilities,
-					settings = {
-						Lua = {
-							-- make the language server recognize "vim" global
-							diagnostics = {
-								globals = { "vim" },
-							},
-							completion = {
-								callSnippet = "Replace",
+		mason_lspconfig.setup({
+			handlers = {
+				-- default handler for installed servers
+				function(server_name)
+					local ok = pcall(require, "lspconfig.server_configurations." .. server_name)
+					if not ok then
+						return
+					end
+					lspconfig[server_name].setup({
+						capabilities = capabilities,
+					})
+				end,
+				["graphql"] = function()
+					lspconfig["graphql"].setup({
+						capabilities = capabilities,
+						filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
+					})
+				end,
+				["lua_ls"] = function()
+					lspconfig["lua_ls"].setup({
+						capabilities = capabilities,
+						settings = {
+							Lua = {
+								diagnostics = {
+									globals = { "vim" },
+								},
+								completion = {
+									callSnippet = "Replace",
+								},
 							},
 						},
-					},
-				})
-			end,
+					})
+				end,
+			},
 		})
 	end,
 }

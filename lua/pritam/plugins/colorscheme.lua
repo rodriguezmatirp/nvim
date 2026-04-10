@@ -1,52 +1,27 @@
 return {
 	{
-		"ellisonleao/gruvbox.nvim",
+		"rose-pine/neovim",
+		name = "rose-pine",
 		priority = 1000,
-
 		config = function()
-			-- Set Gruvbox-specific options in Lua
-			vim.g.gruvbox_contrast_dark = "hard"
-			vim.g.gruvbox_contrast_light = "hard"
-			vim.g.gruvbox_invert_selection = "0"
-
-			-- Configure Gruvbox theme
-			require("gruvbox").setup({
-				terminal_colors = true,
-				undercurl = true,
-				underline = true,
-				bold = true,
-				italic = {
-					strings = false,
-					emphasis = true,
-					comments = true,
-					operators = false,
-					folds = true,
+			require("rose-pine").setup({
+				variant = "moon", -- main, moon, dawn
+				dark_variant = "moon",
+				dim_inactive_windows = false,
+				extend_background_behind_borders = true,
+				styles = {
+					bold = true,
+					italic = true,
+					transparency = false,
 				},
-				strikethrough = true,
-				invert_selection = false,
-				invert_signs = false,
-				invert_tabline = false,
-				invert_intend_guides = false,
-				inverse = true,
-				contrast = "hard", -- Hard contrast mode
-				palette_overrides = {},
-				overrides = {},
-				dim_inactive = false,
-				transparent_mode = false,
 			})
-
-			-- Set Airline theme
-			vim.g.airline_theme = "gruvbox8"
-
-			-- Set Gruvbox as the colorscheme
-			vim.cmd([[colorscheme gruvbox]])
+			vim.cmd("colorscheme rose-pine")
 		end,
 	},
 	{
 		"mawkler/modicator.nvim",
-		dependencies = "ellisonleao/gruvbox.nvim", -- Add your colorscheme plugin here
+		dependencies = "rose-pine/neovim",
 		init = function()
-			-- These are required for Modicator to work
 			vim.o.cursorline = true
 			vim.o.number = true
 			vim.o.termguicolors = true
