@@ -1,26 +1,63 @@
+-- Uncomment the vim.cmd line in ONE block at a time to switch colorschemes
+
 return {
+	-- 1. ellisonleao/gruvbox.nvim (current)
+	-- {
+	-- 	"ellisonleao/gruvbox.nvim",
+	-- 	priority = 1000,
+	-- 	config = function()
+	-- 		require("gruvbox").setup({
+	-- 			contrast = "hard",
+	-- 			bold = true,
+	-- 			italic = {
+	-- 				strings = true,
+	-- 				emphasis = true,
+	-- 				comments = true,
+	-- 				operators = false,
+	-- 				folds = true,
+	-- 			},
+	-- 			transparent_mode = false,
+	-- 		})
+	-- 		vim.cmd("colorscheme gruvbox")
+	-- 	end,
+	-- },
+	--
+	-- 2. sainnhe/gruvbox-material — softer palette, most options
+	-- {
+	-- 	"sainnhe/gruvbox-material",
+	-- 	priority = 1000,
+	-- 	config = function()
+	-- 		vim.g.gruvbox_material_background = "hard" -- "hard", "medium", "soft"
+	-- 		vim.g.gruvbox_material_foreground = "original" -- "original", "mix", "material"
+	-- 		vim.g.gruvbox_material_enable_italic = 1
+	-- 		vim.g.gruvbox_material_enable_bold = 1
+	-- 		vim.cmd("colorscheme gruvbox-material")
+	-- 	end,
+	-- },
+	--
+	-- -- 3. luisiacc/gruvbox-baby — warmer tones, treesitter-focused
+	-- {
+	-- 	"luisiacc/gruvbox-baby",
+	-- 	priority = 1000,
+	-- 	config = function()
+	-- 		vim.g.gruvbox_baby_background_color = "dark" -- "dark", "medium"
+	-- 		vim.g.gruvbox_baby_use_original_palette = 0
+	-- 		vim.cmd("colorscheme gruvbox-baby")
+	-- 	end,
+	-- },
+	--
+	-- -- 4. eddyekofo94/gruvbox-flat.nvim — darker bg, flat style
 	{
-		"rose-pine/neovim",
-		name = "rose-pine",
+		"eddyekofo94/gruvbox-flat.nvim",
 		priority = 1000,
 		config = function()
-			require("rose-pine").setup({
-				variant = "moon", -- main, moon, dawn
-				dark_variant = "moon",
-				dim_inactive_windows = false,
-				extend_background_behind_borders = true,
-				styles = {
-					bold = true,
-					italic = true,
-					transparency = false,
-				},
-			})
-			vim.cmd("colorscheme rose-pine")
+			vim.g.gruvbox_flat_style = "dark" -- "dark", "darker", "cool", "deep", "warm", "warmer"
+			vim.cmd("colorscheme gruvbox-flat")
 		end,
 	},
+
 	{
 		"mawkler/modicator.nvim",
-		dependencies = "rose-pine/neovim",
 		init = function()
 			vim.o.cursorline = true
 			vim.o.number = true
